@@ -15,11 +15,11 @@ class Items extends Component {
 
   render() {
 
-    const { id = 0 } = this.props.active,
-      { itemsList } = this.props,
-      activeItem = itemsList.find(item => item.id === id),
-      indexOfActiveItem = itemsList.lastIndexOf(activeItem),
-      heightOfItemContainer = 58;
+    const { id = 0 } = this.props.active;
+    const { itemsList } = this.props;
+    const activeItem = itemsList.find(item => item.id === id);
+    const indexOfActiveItem = itemsList.lastIndexOf(activeItem);
+    const heightOfItemContainer = 58;
 
     return (
       <div className="items-container col-md-5 col-sm-12 col-12">

@@ -12,3 +12,8 @@ export const changeNumberOfComment = (id = 0) => ({
   type: 'INCREASE_NUMBER_OF_COMMENT',
   payload: { id },
 });
+
+export const deleteComents = (id = 0) => ({
+  type: 'DELETE_COMMENTS',
+  payload: { id },
+});

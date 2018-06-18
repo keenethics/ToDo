@@ -3,6 +3,7 @@ import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
 
 import { deleteItem, changeActiveItem } from '../../actions/item';
+import { deleteComments } from '../../actions/comment';
 
 class ItemView extends Component {
   constructor(props) {
@@ -17,15 +18,9 @@ class ItemView extends Component {
     event.nativeEvent.stopImmediatePropagation();
 
     const { id, deleteItem, itemsList, changeActiveItem } = this.props;
-    const tmpItemsList = itemsList.slice(0);
-    const itemWhichWillDelete = itemsList.find(item => item.id === id);
-    const indexOfDeleteItem = itemsList.lastIndexOf(itemWhichWillDelete);
-
-    tmpItemsList.splice(indexOfDeleteItem, 1);
-    let { id: newActiveId } = tmpItemsList.length && indexOfDeleteItem !== -1 ? tmpItemsList[0] : { id: 0 };
 
     deleteItem(id);
-    changeActiveItem(newActiveId);
+    changeActiveItem(-1);
   }
 
   setActiveItem() {
@@ -53,6 +48,7 @@ const mapState = ({ itemsList }) => ({ itemsList }),
   mapDispatch = dispatch => ({
     deleteItem: id => {
       dispatch(deleteItem(id));
+      dispatch(deleteComments(id))
     },
     changeActiveItem: id => {
       dispatch(changeActiveItem(id));

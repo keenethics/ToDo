@@ -1,21 +1,17 @@
-const defaultActive = { id: 0 },
-  active = (state = defaultActive, action) => {
-    const { type, payload } = action;
+const defaultActive = { id: 0 };
+const active = (state = defaultActive, action) => {
+  const { type, payload } = action;
 
-    switch (type) {
-      case 'CHANGE_ACTIVE_ITEM':
-      {
-        const { id } = payload;
+  switch (type) {
+    case 'CHANGE_ACTIVE_ITEM':
+    {
+      const { id } = payload;
 
-        return {
-          id,
-        };
-      }
-      default:
-        return {
-          ...state,
-        };
+      return { id };
     }
-  };
+    default:
+      return { ...state };
+  }
+};
 
 export default active;

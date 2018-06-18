@@ -21,22 +21,20 @@ const commentsForAllItem = (state = defaultCommentsForAllItem, action) => {
     case 'NEW_COMMENT_TEMPLATE':
     {
       const { id } = payload;
-      const tmpState = state.slice(0);
-      const existedTemplate = tmpState.find(comments => comments.id === id);
-      const currentTemplateIndex = tmpState.lastIndexOf(existedTemplate);
-      const isExistComments = Boolean(existedTemplate);
-
-      if (isExistComments) {
-        tmpState.splice(currentTemplateIndex, 1);
-      }
 
       return [
-        ...tmpState,
+        ...state,
         {
           id,
           comments: [],
         },
       ];
+    }
+    case 'DELETE_COMMENTS':
+    {
+      const { id } = payload;
+
+      return state.filter(comments => comments.id !== id);
     }
     default:
       return [

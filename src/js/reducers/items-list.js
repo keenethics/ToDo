@@ -1,8 +1,8 @@
-const defaultItemsList = [],
-  itemsList = (state = defaultItemsList, action) => {
-    const { type, payload } = action;
+const defaultItemsList = [];
+const itemsList = (state = defaultItemsList, action) => {
+  const { type, payload } = action;
 
-    switch (type) {
+  switch (type) {
     case 'ADD_NEW_ITEM':
     {
       const { title, id } = payload;
@@ -13,8 +13,8 @@ const defaultItemsList = [],
         {
           id,
           title,
-          numberOfComments
-        }
+          numberOfComments,
+        },
       ];
     }
     case 'DELETE_ITEM':
@@ -33,7 +33,7 @@ const defaultItemsList = [],
       const numberOfComments = ++currentItem.numberOfComments;
       const updatedItem = {
         ...currentItem,
-        numberOfComments
+        numberOfComments,
       };
 
       tmpState.splice(indexOfCurrentItem, 1, updatedItem);
@@ -42,9 +42,9 @@ const defaultItemsList = [],
     }
     default:
       return [
-        ...state
+        ...state,
       ];
-    }
-  };
+  }
+};
 
 export default itemsList;

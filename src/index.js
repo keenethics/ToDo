@@ -23,5 +23,5 @@ render(
   <Provider store={store}>
     <Main />
   </Provider>,
-  document.getElementById('app')
+  document.getElementById('app'),
 );

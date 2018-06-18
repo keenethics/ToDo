@@ -16,10 +16,10 @@ class ItemView extends Component {
     event.stopPropagation();
     event.nativeEvent.stopImmediatePropagation();
 
-    const { id, deleteItem, itemsList, changeActiveItem } = this.props,
-      tmpItemsList = itemsList.slice(0),
-      itemWhichWillDelete = itemsList.find(item => item.id === id),
-      indexOfDeleteItem = itemsList.lastIndexOf(itemWhichWillDelete);
+    const { id, deleteItem, itemsList, changeActiveItem } = this.props;
+    const tmpItemsList = itemsList.slice(0);
+    const itemWhichWillDelete = itemsList.find(item => item.id === id);
+    const indexOfDeleteItem = itemsList.lastIndexOf(itemWhichWillDelete);
 
     tmpItemsList.splice(indexOfDeleteItem, 1);
     let { id: newActiveId } = tmpItemsList.length && indexOfDeleteItem !== -1 ? tmpItemsList[0] : { id: 0 };

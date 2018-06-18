@@ -1,30 +1,30 @@
-const defaultCommentsForAllItem = [{ id: 0, comments: [] }],
-  commentsForAllItem = (state = defaultCommentsForAllItem, action) => {
-    const { type, payload } = action;
+const defaultCommentsForAllItem = [{ id: 0, comments: [] }];
+const commentsForAllItem = (state = defaultCommentsForAllItem, action) => {
+  const { type, payload } = action;
 
-    switch (type) {
+  switch (type) {
     case 'ADD_COMMENT':
     {
-      const { commentText, id } = payload,
-        itemComments = state.find(comment => comment.id === id),
-        notChangedComments = state.filter(comments => comments.id !== id),
-        comments = [...itemComments.comments, { commentText }];
+      const { commentText, id } = payload;
+      const itemComments = state.find(comment => comment.id === id);
+      const notChangedComments = state.filter(comments => comments.id !== id);
+      const comments = [...itemComments.comments, { commentText }];
 
       return [
         ...notChangedComments,
         {
           id,
-          comments
-        }
+          comments,
+        },
       ];
     }
     case 'NEW_COMMENT_TEMPLATE':
     {
-      const { id } = payload,
-        tmpState = state.slice(0),
-        existedTemplate = tmpState.find(comments => comments.id === id),
-        currentTemplateIndex = tmpState.lastIndexOf(existedTemplate),
-        isExistComments = Boolean(existedTemplate);
+      const { id } = payload;
+      const tmpState = state.slice(0);
+      const existedTemplate = tmpState.find(comments => comments.id === id);
+      const currentTemplateIndex = tmpState.lastIndexOf(existedTemplate);
+      const isExistComments = Boolean(existedTemplate);
 
       if (isExistComments) {
         tmpState.splice(currentTemplateIndex, 1);
@@ -34,15 +34,15 @@ const defaultCommentsForAllItem = [{ id: 0, comments: [] }],
         ...tmpState,
         {
           id,
-          comments: []
-        }
+          comments: [],
+        },
       ];
     }
     default:
       return [
-        ...state
+        ...state,
       ];
-    }
-  };
+  }
+};
 
 export default commentsForAllItem;

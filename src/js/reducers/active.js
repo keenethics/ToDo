@@ -3,18 +3,18 @@ const defaultActive = { id: 0 },
     const { type, payload } = action;
 
     switch (type) {
-    case 'CHANGE_ACTIVE_ITEM':
-    {
-      const { id } = payload;
+      case 'CHANGE_ACTIVE_ITEM':
+      {
+        const { id } = payload;
 
-      return {
-        id
-      };
-    }
-    default:
-      return {
-        ...state
-      };
+        return {
+          id,
+        };
+      }
+      default:
+        return {
+          ...state,
+        };
     }
   };
 

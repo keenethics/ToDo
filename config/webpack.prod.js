@@ -1,22 +1,29 @@
 const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
+const { config, paths } = require('./webpack.common.js');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require('webpack');
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
-const paths = {
-  DIST: path.resolve(__dirname, '../dist'),
-  SRC: path.resolve(__dirname, '../src'),
-  JS: path.resolve(__dirname, '../src/js')
-};
-
-module.exports = merge(common, {
+module.exports = merge(config, {
+  mode: 'production',
+  devtool: 'source-map',
+  optimization: {
+    minimizer: [
+      new UglifyJSPlugin({
+        sourceMap: true,
+        cache: true
+      })
+    ]
+  },
   plugins: [
+    new CleanWebpackPlugin(['dist'], {
+      root: path.resolve(__dirname, '..')
+    }),
     new HtmlWebpackPlugin({
       template: path.join(paths.SRC, 'index.html')
     }),
-    new UglifyJSPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
     })

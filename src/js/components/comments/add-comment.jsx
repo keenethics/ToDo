@@ -15,27 +15,11 @@ class Items extends Component {
     this.sendComment = this.sendComment.bind(this);
   }
 
-  componentDidMount() {
-    document.querySelector('#add-comment-form').onkeydown = event => {
-      const codeOfEnterKey = 13,
-        { ctrlKey, keyCode } = event,
-        isEnterKey = keyCode === codeOfEnterKey;
-
-      if (ctrlKey && isEnterKey && event.target.value) {
-        this.sendComment(event);
-      }
-
-      if (!ctrlKey && isEnterKey) {
-        event.preventDefault();
-      }
-    };
-  }
-
   sendComment(event) {
     event.preventDefault();
 
-    const { addComment, id } = this.props,
-      { commentText } = this.state;
+    const { addComment, id } = this.props;
+    const { commentText } = this.state;
 
     if (!id) {
       return;
@@ -49,7 +33,7 @@ class Items extends Component {
     const { commentText } = this.state;
 
     return (
-      <form id="add-comment-form" className="add-comment-container"
+      <form className="add-comment-container"
         onSubmit={this.sendComment}>
         <Input required={true} value={commentText}
           placeholder="enter comment..."

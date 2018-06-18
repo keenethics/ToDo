@@ -19,12 +19,12 @@ class AddItem extends Component {
   addNewItem(event) {
     event.preventDefault();
 
-    const { addNewItem, itemsList, createTemplateForComment } = this.props,
-      indexOfLastItem = itemsList.length ? itemsList.length - 1 : 0,
-      lastItem = itemsList[indexOfLastItem],
-      { id = 0 } = lastItem || {},
-      newId = id + 1,
-      { title } = this.state;
+    const { addNewItem, itemsList, createTemplateForComment } = this.props;
+    const indexOfLastItem = itemsList.length ? itemsList.length - 1 : 0;
+    const lastItem = itemsList[indexOfLastItem];
+    const { id = 0 } = lastItem || {};
+    const newId = id + 1;
+    const { title } = this.state;
 
     addNewItem({ title, id: newId });
     createTemplateForComment(newId);

@@ -6,12 +6,12 @@ const paths = {
   JS: path.resolve(__dirname, '../src/js')
 };
 
-module.exports = {
+const config = {
   entry: path.join(paths.SRC, 'index.js'),
   context: __dirname,
   output: {
     path: paths.DIST,
-    filename: 'app.bundle.js'
+    filename: 'app.[chunkhash].js'
   },
   module: {
     rules: [
@@ -19,7 +19,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: [
-          'babel-loader'
+          { loader: 'babel-loader' }
         ]
       },
       {
@@ -40,3 +40,6 @@ module.exports = {
     extensions: ['.js', '.jsx', '.scss']
   }
 };
+
+
+module.exports = { config, paths };

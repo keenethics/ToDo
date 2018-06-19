@@ -10,7 +10,7 @@ class AddItem extends Component {
     super(props);
 
     this.state = {
-      title: ''
+      title: '',
     };
 
     this.addNewItem = this.addNewItem.bind(this);
@@ -42,7 +42,8 @@ class AddItem extends Component {
           placeholder="Type name here..."
           required
           value={title}
-          onChange={event => this.setState({ title: event.target.value })}/>
+          onChange={event => this.setState({ title: event.target.value })}
+        />
         <Button className="add-item-container__add-btn" color="primary" type="submit">Add New</Button>
       </form>
     );

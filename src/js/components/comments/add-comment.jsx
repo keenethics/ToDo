@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Input } from 'reactstrap';
 
 import { addComment } from '../../actions/comment';
+import { inputComment } from '../../actions/comment';
 
 class Items extends Component {
   constructor(props) {
@@ -18,19 +19,18 @@ class Items extends Component {
   sendComment(event) {
     event.preventDefault();
 
-    const { addComment, id } = this.props;
-    const { commentText } = this.state;
+    const { addComment, id, text } = this.props;
 
     if (!id) {
       return;
     }
 
-    addComment({ commentText, id });
-    this.setState({ commentText: '' });
+    addComment({ commentText: text, id });
+    this.props.inputComment('');
   }
 
   render() {
-    const { commentText } = this.state;
+    const { text } = this.props;
 
     return (
       <form
@@ -39,20 +39,19 @@ class Items extends Component {
       >
         <Input
           required
-          value={commentText}
+          value={text}
           placeholder="enter comment..."
-          onChange={event => this.setState({ commentText: event.target.value })}
+          onChange={event => this.props.inputComment(event.target.value)}
         />
       </form>
     );
   }
 }
 
-const mapState = ({ active: { id } }) => ({ id });
+const mapState = ({ active: { id }, input: { text } }) => ({ id, text });
 const mapDispatch = dispatch => ({
-  addComment: ({ commentText, id }) => {
-    dispatch(addComment({ commentText, id }));
-  }
+  addComment: ({ commentText, id }) => dispatch(addComment({ commentText, id })),
+  inputComment: text => dispatch(inputComment(text)),
 });
 
 export default connect(mapState, mapDispatch)(Items);

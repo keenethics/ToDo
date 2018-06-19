@@ -12,3 +12,8 @@ export const deleteComments = (id = 0) => ({
   type: 'DELETE_COMMENTS',
   payload: { id },
 });
+
+export const inputComment = (text = '') => ({
+  type: 'INPUT_COMMENT',
+  payload: { text },
+})

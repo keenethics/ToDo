@@ -16,3 +16,8 @@ export const changeActiveItem = (id = 0) => ({
 export const init = () => ({
   type: 'INIT',
 });
+
+export const inputTitle = (text = '') => ({
+  type: 'INPUT_TITLE',
+  payload: { text },
+})

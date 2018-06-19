@@ -9,10 +9,6 @@ class Items extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      commentText: ''
-    };
-
     this.sendComment = this.sendComment.bind(this);
   }
 
@@ -48,7 +44,7 @@ class Items extends Component {
   }
 }
 
-const mapState = ({ active: { id }, input: { text } }) => ({ id, text });
+const mapState = ({ active: { id }, input: { textComment } }) => ({ id, text: textComment });
 const mapDispatch = dispatch => ({
   addComment: ({ commentText, id }) => dispatch(addComment({ commentText, id })),
   inputComment: text => dispatch(inputComment(text)),

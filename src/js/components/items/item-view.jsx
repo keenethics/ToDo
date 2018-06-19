@@ -26,7 +26,6 @@ class ItemView extends Component {
     const {
       id,
       deleteItem,
-      itemsList,
       changeActiveItem
     } = this.props;
 
@@ -35,7 +34,7 @@ class ItemView extends Component {
   }
 
   render() {
-    const { title, numberOfComments } = this.props;
+    const { title, commentsCount } = this.props;
 
     return (
       <div
@@ -45,7 +44,7 @@ class ItemView extends Component {
         <div className="item-info layout layout-align-space-between">
           {title}
           <div className="item-info__number-of-comments">
-            {numberOfComments}
+            {commentsCount}
           </div>
         </div>
         <Button outline color="danger" onClick={this.deleteItem}>

@@ -8,11 +8,6 @@ export const commentTemplate = (id = 0) => ({
   payload: { id },
 });
 
-export const changeNumberOfComment = (id = 0) => ({
-  type: 'INCREASE_NUMBER_OF_COMMENT',
-  payload: { id },
-});
-
 export const deleteComments = (id = 0) => ({
   type: 'DELETE_COMMENTS',
   payload: { id },

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Input } from 'reactstrap';
 
-import { addComment, changeNumberOfComment } from '../../actions/comment';
+import { addComment } from '../../actions/comment';
 
 class Items extends Component {
   constructor(props) {
@@ -33,22 +33,26 @@ class Items extends Component {
     const { commentText } = this.state;
 
     return (
-      <form className="add-comment-container"
-        onSubmit={this.sendComment}>
-        <Input required={true} value={commentText}
+      <form
+        className="add-comment-container"
+        onSubmit={this.sendComment}
+      >
+        <Input
+          required
+          value={commentText}
           placeholder="enter comment..."
-          onChange={event => this.setState({ commentText: event.target.value })}/>
+          onChange={event => this.setState({ commentText: event.target.value })}
+        />
       </form>
     );
   }
 }
 
-const mapState = ({ active: { id } }) => ({ id }),
-  mapDispatch = dispatch => ({
-    addComment: ({ commentText, id }) => {
-      dispatch(addComment({ commentText, id }));
-      dispatch(changeNumberOfComment(id));
-    }
-  });
+const mapState = ({ active: { id } }) => ({ id });
+const mapDispatch = dispatch => ({
+  addComment: ({ commentText, id }) => {
+    dispatch(addComment({ commentText, id }));
+  }
+});
 
 export default connect(mapState, mapDispatch)(Items);

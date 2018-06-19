@@ -37,8 +37,10 @@ class AddItem extends Component {
 
     return (
       <form id="add-item-form" onSubmit={this.addNewItem} className="add-item-container col">
-        <Input className="add-item-container__text-filed" placeholder="Type name here..."
-          required={true}
+        <Input
+          className="add-item-container__text-filed"
+          placeholder="Type name here..."
+          required
           value={title}
           onChange={event => this.setState({ title: event.target.value })}/>
         <Button className="add-item-container__add-btn" color="primary" type="submit">Add New</Button>
@@ -47,15 +49,15 @@ class AddItem extends Component {
   }
 }
 
-const mapState = ({ itemsList }) => ({ itemsList }),
-  mapDispatch = dispatch => ({
-    addNewItem: title => {
-      dispatch(addNewItem(title));
-    },
-    createTemplateForComment: id => {
-      dispatch(commentTemplate(id));
-      dispatch(changeActiveItem(id));
-    }
-  });
+const mapState = ({ itemsList }) => ({ itemsList });
+const mapDispatch = dispatch => ({
+  addNewItem: (title) => {
+    dispatch(addNewItem(title));
+  },
+  createTemplateForComment: (id) => {
+    dispatch(commentTemplate(id));
+    dispatch(changeActiveItem(id));
+  }
+});
 
 export default connect(mapState, mapDispatch)(AddItem);

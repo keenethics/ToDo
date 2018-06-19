@@ -9,10 +9,12 @@ import reducer from './js/reducers/index';
 
 import Main from './js/components/main';
 
+/* eslint-disable */
 const store = createStore(
   reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
+/* eslint-enable */
 
 store.dispatch({ type: 'INIT' });
 

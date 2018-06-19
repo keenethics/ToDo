@@ -7,17 +7,13 @@ import commentsForAllItem from './comments-list';
 const appReducer = combineReducers({
   commentsForAllItem,
   itemsList,
-  active
+  active,
 });
 
-const rootReducer = (state, action) => {
-  if (action.type === 'INIT') {
-    const startState = JSON.parse(localStorage.getItem('todo'));
+const getState = (state, action) => (action.type === 'INIT'
+  ? JSON.parse(localStorage.getItem('todo')) || {}
+  : state);
 
-    state = startState || {};
-  }
-
-  return appReducer(state, action);
-};
+const rootReducer = (state, action) => appReducer(getState(state, action), action);
 
 export default rootReducer;

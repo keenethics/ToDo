@@ -26,10 +26,13 @@ class Comments extends Component {
   }
 }
 
-const chooseActive = ({ active: { id }, commentsForAllItem }) => commentsForAllItem.find(itemComments => itemComments.id === id),
-  mapState = state => ({
-    active: state.active,
-    itemComments: chooseActive(state)
-  });
+const chooseActive = ({
+  active: { id },
+  commentsForAllItem,
+}) => commentsForAllItem.find(itemComments => itemComments.id === id);
+const mapState = state => ({
+  active: state.active,
+  itemComments: chooseActive(state),
+});
 
 export default connect(mapState)(Comments);

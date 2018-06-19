@@ -5,11 +5,16 @@ import { createStore } from 'redux';
 
 import './styles/app.scss';
 
-import reducer from './js/reducers/index.js';
+import reducer from './js/reducers/index';
 
 import Main from './js/components/main';
 
-const store = createStore(reducer);
+/* eslint-disable */
+const store = createStore(
+  reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+/* eslint-enable */
 
 store.dispatch({ type: 'INIT' });
 
@@ -23,5 +28,5 @@ render(
   <Provider store={store}>
     <Main />
   </Provider>,
-  document.getElementById('app')
+  document.getElementById('app'),
 );

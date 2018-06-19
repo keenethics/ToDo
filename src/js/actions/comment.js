@@ -13,7 +13,7 @@ export const changeNumberOfComment = (id = 0) => ({
   payload: { id },
 });
 
-export const deleteComents = (id = 0) => ({
+export const deleteComments = (id = 0) => ({
   type: 'DELETE_COMMENTS',
   payload: { id },
 });

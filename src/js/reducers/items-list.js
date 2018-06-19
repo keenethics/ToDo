@@ -41,9 +41,7 @@ const itemsList = (state = defaultItemsList, action) => {
       return tmpState;
     }
     default:
-      return [
-        ...state,
-      ];
+      return [...state];
   }
 };
 

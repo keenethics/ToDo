@@ -1,10 +1,10 @@
-const merge = require('webpack-merge');
-const { config, paths } = require('./webpack.common.js');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const path = require('path');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const merge = require('webpack-merge');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { config, paths } = require('./webpack.common.js');
 
 module.exports = merge(config, {
   mode: 'production',
@@ -13,19 +13,19 @@ module.exports = merge(config, {
     minimizer: [
       new UglifyJSPlugin({
         sourceMap: true,
-        cache: true
-      })
-    ]
+        cache: true,
+      }),
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(['dist'], {
-      root: path.resolve(__dirname, '..')
+      root: path.resolve(__dirname, '..'),
     }),
     new HtmlWebpackPlugin({
-      template: path.join(paths.SRC, 'index.html')
+      template: path.join(paths.SRC, 'index.html'),
     }),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    })
-  ]
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
+  ],
 });
